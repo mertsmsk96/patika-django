@@ -17,3 +17,60 @@ Sınıf (Class) nedir?
 class -> araba
 objects -> audi, nissan, volvo
 
+
+- OOP 4 temel ilke üzerine kuruludur. Bu ilkeler kodların değiştirilebilirlik, yeniden kullanım ve esneklik gibi kriterlerin sağlanmasına ön ayak olurlar. Bunlar: Encapsulation(kapsülleme), Inheritence(kalıtım), Polymorphism(çok biçimlilik) ve Abstraction(soyutlama).
+
+--Encapsulation--
+------------------
+
+- Bir class'a ait niteliklerin ancak o sınıfa ait metotlar tarafından okunabilmesi ve değiştirilebilmesi ilkesidir.
+- Ayrıca değişkenlere sınıf dışından erişim olmaması ve bir sınıf içindeki değişkenlerin nasıl ve ne kadar olacağının da başka kodlardan saklanmış olması anlamına gelir.
+
+Access Modifiers(erişim belirleyicileri)
+------------------------------------------
+
+- Değişken, metot ve sınıfların önüne yazılır ve yazıldıkları konuların erişebilecekleri alanları belirlerler.
+
+*private: yazıldığı öğenin sadece ait olduğu sınıftan doğrudan erişilebilir olduğunu ve o sınıf dışındaki kod parçacıklarından erişim izni olmadığını tanımlar.
+
+*public: öğenin diğer sınıflar tarafından da erişilebilir olmasını ve kullanılabilmesini istediğimizde yazarız.
+
+*protected: kendisi ile aynı pakette bulunan sınıflar tarafından kullanılabilir öğeler için tanımlanır.
+
+
+*** Bu ilkenin en önemli konusu getter ve setter konusudur. Sınıf içindeki niteliklere dışardan erişim izni verilirse anlamsız veriler gönderilebileceğinden dolayı bu durumu engellemek için öncelikle nitelikler private olarak ayarlanmalıdır. 
+
+Sınıfa yazılacak constructor metot ile nesneye yazılan değerler kontrol edilmelidir.
+
+Ardından niteliklere erişip değiştirmek için getter ve setter metotları eklenmeli ve setter metoduna verilen değeri kontrol edecek bir koşul ifadesi daha yazılmalıdır. Böylece anlamsız girdilerin önüne geçilmiş olur.
+
+
+--Inheritance (Kalıtım)--
+-------------------------
+
+- Bir sınıfın başka bir sınıftaki nitelik ve davranışları kendisine alması demektir.
+
+- Kalıtımı yapan sınıf alt sınıf(subclass), kalıtım yaptığı sınıf ise ata sınıftır(superclass).
+
+* Single Inheritance -> bir sınıfın başka bir sınıfın özelliklerini miras almasıdır.
+
+* Multiple Inheritance -> Bİr sınıfın birden fazla sınıfın özelliklerini miras almasıdır. (java da bu özellik yoktur. bunun yerine interface kullanılır)
+
+* Multilevel Inheritance -> Örneğin A->B->C dersek C sınıfı B sınıfını miras alırken B sınıfı da A sınıfını miras alır ve C sınıfı dolaylı yoldan A sınıfını da miras almış olur.
+
+* Hierarchical Inheritance -> Birden fazla sınıfın aynı sınıfı genişlettiği bir alt ve üst sınıf ilişkisini ifade eder. Yani B,C ve D sınıfları aynı A sınıfını miras alır.
+
+* Hybrid Inheritance -> Birden fazla kalıtım türünün kombinasyonudur. Örneğin B ve C sınıfı A sınıfını, D sınıfı ise B ve C sınıfını genişletir.
+
+Kalıtım'da Constructor Zinciri ve Super Anahtar Sözcüğü
+Bir sınıfa ait nesne oluşturulurken, o sınıfın bir kurucusunun işletildiğini, kurucunun çalışması tamamlandıktan sonra bellekte artık bir nesnenin oluştuğunu biliyoruz. Kurucuları da nesneleri ilk oluşturuldukları anda anlamlı durumlara taşıyabilmek için kullanıyoruz. Bu durumda, eğer nesnesi oluşturulacak sınıf başka bir sınıfın alt sınıfıysa, önce ataya ait iç nesnesinin oluşturulması ve bu nesnenin niteliklerinin ilk değerlerinin verilmesi gerektiğini söyleyebiliriz.
+
+İç içe nesnelerin oluşabilmesi için nesnelerin içten dışa doğru oluşması gerekir. İç-nesnenin oluşabilmesi için, nesnesi oluşturulacak sınıfa ait kurucu işletilmeye başladığı zaman ilk iş olarak ata sınıfa ait kurucu çağrılır. Eğer ata sınıf da başka bir sınıfın alt sınıfıysa, bu kez o sınıfın kurucusu çağrılır. Kurucu zinciri alt sınıftan ata sınıfa doğru bu şekilde ilerler. En üstte, kalıtım ağacının tepesindeki sınıfın kurucusunun çalışması sonlandıktan sonra sırası ile alt sınıfların kurucularının çalışması sonlanacaktır. Böylece iç içe nesneler sıra ile oluşturularak en son en dıştaki nesne oluşturulmuş olur ve kurucu zinciri tamamlanır.
+
+Super Kullanımı
+Eğer ata sınıfta varsayılan kurucu yoksa ve programcı alt sınıftaki kurucunun içinde ata sınıfın hangi kurucusunun çağrılacağını belirtmezse derleme hatası alınacaktır. Çünkü derleyici aksi belirtilmedikçe ata sınıfın varsayılan kurucusunu çağıran super() kodunu üretecektir. Ata sınıfın hangi kurucusunun çağrılacağı, super anahtar sözcüğü ile birlikte verilen parametrelere göre belirlenir. Nasıl ki new işleci ile birlikte kullandığımız parametreler hangi kurucunun çağrılacağını belirliyorsa, super anahtar sözcüğü ile birlikte kullanılan parametreler de aynı şekilde ata sınıfın hangi kurucusunun işletileceğini belirler.
+
+
+-- Polymorphism --
+------------------
+
